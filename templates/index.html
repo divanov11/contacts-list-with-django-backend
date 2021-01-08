@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+	
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/6b20b1c14d.js" crossorigin="anonymous"></script>
+
+	<title>Contacts List</title>
+</head>
+<body>
+
+	<header class="header">
+		<form action="/" method="POST" class="search-bar" id="search-form">
+			{% csrf_token %}
+			{% if search_input != '' %}
+			<input type="search-name" id="contact-search" name="search-area" value="{{ search_input }}">
+			{% else %}
+			<input type="search-name" id="contact-search" name="search-area" placeholder="Search">
+			{% endif %}
+			<!-- <input type="submit" /> -->
+			
+			<i onclick="document.getElementById('search-form').submit();" style="padding-left: 5px;" class="fas fa-search"></i>
+			
+		</form>
+		<a href="/new"><i id="add" class="fas fa-plus-circle"></i></a>
+	</header>
+
+	<section class="contacts-library">
+		<ul class="contacts-list">
+			{% for contact in contacts reversed %}
+			<div class="contact-section">
+				<li id="Jane-Doe" class="list__item">
+					<a href="profile/{{ contact.id }}" style="text-decoration: none;">
+					<p class="contact-name">{{ contact.full_name | title }}</p>
+					</a>
+					<p id="friend" class="relationship">{{ contact.relationship | title }}</p>
+				</li>
+
+				<li id="call" class="list__item">
+					<i class="fas fa-phone"></i>
+					<i id="text" class="fas fa-sms"></i>
+				</li>
+			</div>
+
+			<hr>
+			{% endfor %}
+		</ul>
+	</section>
+
+</body>
+</html>

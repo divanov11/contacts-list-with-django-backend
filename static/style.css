@@ -1,0 +1,101 @@
+body{
+	font-family: 'Inter', sans-serif;
+	margin: 0 auto;
+	max-width: 428px;
+}
+
+.header{
+	display: flex;
+	justify-content: space-evenly;
+	color: #fff;
+	background: linear-gradient(90deg, rgba(111,177,127,1) 0%, rgba(154,173,89,1) 100%);
+	padding: 2em 0;
+	align-items: center;
+}
+
+#contact-search{
+	font-size: 1.2em;
+	padding:.3em .3em;
+	border-radius: 100px;
+	border:1px solid white;
+}
+
+
+.contacts-library{
+	background: #313438;
+	padding: 1.5em;
+}
+
+#add{
+	color: #fff;
+	font-size: 1.5em;
+}
+
+i{
+	color: #fff;
+	font-size: 1.5em;
+}
+
+.contact-name{
+	color: #fff;
+	font-size: 1.2em;
+}
+
+.relationship{
+	color: #fff;
+	font-size: .8em;
+}
+
+ul{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+hr{
+	border: 1px solid #494a4b;
+}
+
+.list__item{
+	list-style: none;
+}
+
+
+#Jane-Doe{
+	padding-top: 0;
+	margin-top: 0;
+}
+
+.relationship{
+	width: 5em;
+	text-align: center;
+	padding: .4em .5em;
+	border-radius: 100px;
+	border-top-left-radius: 0;
+}
+
+#friend{
+	background-color: #75A85E;
+}
+
+#family{
+	background-color: #47A660;
+}
+
+#work{
+	background-color:#4CAD78;
+}
+
+#call{
+	display: flex;
+}
+
+.contact-section{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#text{
+	padding-left: 1em;
+}

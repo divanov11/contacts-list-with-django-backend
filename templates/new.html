@@ -1,0 +1,86 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'style-edit.css' %}">
+	
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/6b20b1c14d.js" crossorigin="anonymous"></script>
+	<title>Edit Contact</title>
+</head>
+<body>
+
+	<header class="hero">
+		<a href="/"><i id="back-btn" class="fas fa-chevron-circle-left"></i></a>
+		<div class="hero-info">
+			<h1 class="name">New Contact</h1>
+			<!-- <p id="friend" class="relationship-hero">Friend</p> -->
+		</div>
+	</header>
+
+	<form action="new" method="POST">
+		{% csrf_token %}
+		<section class="contact-info">
+
+			<div id="phone-info" class="info-line">
+				<i id="cell" class="fas fa-phone"></i>
+				<input type="text" id="fullname" name="fullname" placeholder="Full Name">
+			</div>
+
+			<div id="phone-info" class="info-line">
+				<i id="relationship-icon" class="fas fa-user-circle"></i>
+				<input type="text" id="relationship-field" name="relationship" placeholder="Relationship">
+			</div>
+
+		
+
+			<div id="text-info" class="info-line">
+				<i id="text" class="fas fa-sms"></i>
+				<input type="text" id="phone-number" name="phone-number" placeholder="Phone Number">
+			</div>
+
+			
+
+			<div id="email-info" class="info-line">
+				<i id="mail" class="fas fa-envelope"></i>
+				<input type="text" id="e-mail" name="e-mail" placeholder="Email">
+			</div>
+
+			
+
+			<div id="address-info" class="info-line">
+				<i id="location" class="fas fa-map-marker-alt"></i>
+				<input type="text" id="address" name="address" placeholder="Address">
+			</div>
+
+			
+
+			<div id="birthday-info" class="info-line">
+				<i id="cake" class="fas fa-birthday-cake"></i>
+				<input type="text" id="birthday" name="birthday" placeholder="Birthday(YYYY-MM-DD)">
+			</div>
+		</section>
+
+		<section class="save-container">
+			<div class="save-contact">
+				<i id="save" class="fas fa-check-circle"></i>
+				<button type="submit" class="save-button">Save Contact</button>
+			</div>
+		</section>
+	</form>
+
+	<!-- <section class="delete-container">
+		<div class="delete-contact">
+			<i id="delete" class="fas fa-trash"></i>
+			<button class="delete-button">Delete Contact</button>
+		</div>
+	</section> -->
+
+
+</body>
+</html>
