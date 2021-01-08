@@ -12,8 +12,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
-𝐢𝐦𝐩𝐨𝐫𝐭 𝐝𝐣𝐚𝐧𝐠𝐨_𝐡𝐞𝐫𝐨𝐤𝐮
-𝐢𝐦𝐩𝐨𝐫𝐭 𝐝𝐣_𝐝𝐚𝐭𝐚𝐛𝐚𝐬𝐞_𝐮𝐫𝐥
+import django_heroku
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -78,10 +78,7 @@ WSGI_APPLICATION = 'contactslist.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config()
 }
 
 
@@ -124,4 +121,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-𝐝𝐣𝐚𝐧𝐠𝐨_𝐡𝐞𝐫𝐨𝐤𝐮.𝐬𝐞𝐭𝐭𝐢𝐧𝐠𝐬(𝐥𝐨𝐜𝐚𝐥𝐬())
+django_heroku.settings(locals())
