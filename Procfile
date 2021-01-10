@@ -1,1 +1,0 @@
-web gunicorn contactslist.wsgi:application --log-file -

@@ -4,8 +4,14 @@
 
 body{
 	font-family: 'Inter', sans-serif;
-	margin: 0 auto;
+	margin: 0;
+}
+
+.container{
 	max-width: 428px;
+	margin: 0 auto;
+	background-color: #313438;
+	height: 100vh;
 }
 
 
@@ -15,7 +21,7 @@ body{
 	padding: 2em 0; 
 }
 
-#back-btn{
+.back-btn{
 	color: #fff;
 	font-size: 1.7em;
 	padding-left: 1em;
@@ -35,11 +41,9 @@ body{
 	border-radius: 100px;
 	border-top-left-radius: 0;
 	margin: 0;
-}
-
-#friend{
 	background-color: #75A85E;
 }
+
 
 .delete-container{
 	background-color: #313438;
@@ -49,18 +53,15 @@ body{
 
 p{
 	padding-bottom: 2em;
+	color: #fff;
 }
 
 .delete-container{
-	background-color: #313438;
 	padding: 2em 3.5em;
-	color: #fff;
-	height: 750px;
 }
 
 .delete-contact{
 	display: flex;
-	color: #fff;
 	width: 90%;
 	margin: 0 auto;
 	align-items: center;
@@ -76,11 +77,13 @@ p{
 	 color: #fff;
 	 font-size: 1.3em;
 	 padding-left: 1.5em;
+	 cursor: pointer;
 }
 
-#delete{
+.delete-icon{
 	background: linear-gradient(90deg, rgba(111,177,127,1) 0%, rgba(154,173,89,1) 100%);
 	border-radius: 100px;
 	font-size: 1.5em;
 	padding: .5em;
+	cursor: pointer;
 }

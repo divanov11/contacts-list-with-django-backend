@@ -5,69 +5,59 @@ from .models import Contact
 
 def index(request):
     contacts = Contact.objects.all()
-    search_input = ''
-    if request.method == 'POST':
-        search_input = request.POST['search-area']
+
+    search_input = request.GET.get('search-area')
+    if search_input:
         contacts = Contact.objects.filter(full_name__icontains=search_input)
+    else:
+        contacts = Contact.objects.all()
+        search_input = ''
+
     return render(request, 'index.html', {'contacts': contacts, 'search_input': search_input})
 
-def new(request):
+
+def contactProfile(request, pk):
+    contact = Contact.objects.get(id=pk)
+    return render(request, 'contact-profile.html', {'contact': contact})
+
+
+def addContact(request):
     if request.method == 'POST':
-        fullname = request.POST['fullname']
-        relationship = request.POST['relationship']
-        phonenumber = request.POST['phone-number']
-        email = request.POST['e-mail']
-        address = request.POST['address']
-        birthday = request.POST['birthday']
 
         new_contact = Contact(
-            full_name=fullname,
-            relationship=relationship,
-            email=email,
-            phone_number=phonenumber,
-            address=address,
-            birthday=birthday)
+            full_name=request.POST['fullname'],
+            relationship=request.POST['relationship'],
+            email=request.POST['email'],
+            phone_number=request.POST['phone-number'],
+            address=request.POST['address'],
+        )
         new_contact.save()
         return redirect('/')
+
     return render(request, 'new.html')
 
-def edit(request, pk):
-    pk = pk
-    get_contact = Contact.objects.get(id=pk)
-    return render(request, 'edit.html', {'contact': get_contact})
 
-def update(request):
-    fullname = request.POST['fullname']
-    relationship = request.POST['relationship']
-    phonenumber = request.POST['phone-number']
-    email = request.POST['e-mail']
-    address = request.POST['address']
-    birthday = request.POST['birthday']
-    id_no = request.POST['id']
+def editContact(request, pk):
+    contact = Contact.objects.get(id=pk)
 
-    a = Contact.objects.get(id=id_no)
-    a.full_name = fullname
-    a.relationship = relationship
-    a.email = email
-    a.phone_number = phonenumber
-    a.address = address
-    a.birthday = birthday
-    a.save()
+    if request.method == 'POST':
+        contact.full_name = request.POST['fullname']
+        contact.relationship = request.POST['relationship']
+        contact.email = request.POST['email']
+        contact.phone_number = request.POST['phone-number']
+        contact.address = request.POST['address']
+        contact.save()
 
-    return redirect('/profile/'+id_no)
+        return redirect('/profile/' + pk)
 
-def delete(request, pk):
-    pk = pk
-    get_contact = Contact.objects.get(id=pk)
-    return render(request, 'delete.html', {'contact': get_contact})
-    
-def deletecont(request, pk):
-    pk = pk
-    get_contact = Contact.objects.get(id=pk)
-    get_contact.delete()
-    return redirect('/')
+    return render(request, 'edit.html', {'contact': contact})
 
-def profile(request, pk):
-    pk = pk
-    get_contact = Contact.objects.get(id=pk)
-    return render(request, 'contact-profile.html', {'contact': get_contact})
+
+def deleteContact(request, pk):
+    contact = Contact.objects.get(id=pk)
+
+    if request.method == 'POST':
+        contact.delete()
+        return redirect('/')
+
+    return render(request, 'delete.html', {'contact': contact})

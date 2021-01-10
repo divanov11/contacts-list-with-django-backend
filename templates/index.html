@@ -2,57 +2,68 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
 
-    <script src="https://kit.fontawesome.com/6b20b1c14d.js" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/6b20b1c14d.js" crossorigin="anonymous"></script>
 
 	<title>Contacts List</title>
 </head>
+
 <body>
+	<div class="container">
 
-	<header class="header">
-		<form action="/" method="POST" class="search-bar" id="search-form">
-			{% csrf_token %}
-			{% if search_input != '' %}
-			<input type="search-name" id="contact-search" name="search-area" value="{{ search_input }}">
-			{% else %}
-			<input type="search-name" id="contact-search" name="search-area" placeholder="Search">
-			{% endif %}
-			<!-- <input type="submit" /> -->
-			
-			<i onclick="document.getElementById('search-form').submit();" style="padding-left: 5px;" class="fas fa-search"></i>
-			
-		</form>
-		<a href="/new"><i id="add" class="fas fa-plus-circle"></i></a>
-	</header>
+		<header class="header">
+			<form action="/" method="GET" class="search-bar" id='search-form'>
 
-	<section class="contacts-library">
-		<ul class="contacts-list">
-			{% for contact in contacts reversed %}
-			<div class="contact-section">
-				<li id="Jane-Doe" class="list__item">
-					<a href="profile/{{ contact.id }}" style="text-decoration: none;">
-					<p class="contact-name">{{ contact.full_name | title }}</p>
-					</a>
-					<p id="friend" class="relationship">{{ contact.relationship | title }}</p>
-				</li>
+				<input type="search-name" class="contact-search" name="search-area" placeholder="Search"
+					value={{search_input}}>
 
-				<li id="call" class="list__item">
-					<i class="fas fa-phone"></i>
-					<i id="text" class="fas fa-sms"></i>
-				</li>
-			</div>
+				<i onclick="document.getElementById('search-form').submit();" style="padding-left: 5px;"
+					class="fas fa-search"></i>
 
-			<hr>
-			{% endfor %}
-		</ul>
-	</section>
+			</form>
+			<a href="{% url 'add-contact'  %}"><i class="fas fa-plus-circle add"></i></a>
+		</header>
 
+		<section class="contacts-library">
+			<ul class="contacts-list">
+				{% for contact in contacts reversed %}
+
+				<a href="{% url 'profile' contact.id %}" style="text-decoration: none;">
+
+					<div class="contact-section">
+						<li class="list__item">
+
+
+							<p class="contact-name">{{ contact.full_name | title }}</p>
+
+							<p class="relationship">{{ contact.relationship | title }}</p>
+						</li>
+
+						<li id="call" class="list__item">
+							<i class="fas fa-phone"></i>
+							<i class="fas fa-sms text"></i>
+						</li>
+					</div>
+				</a>
+
+				<hr>
+
+
+				<!-- TOMI: If no results, show this message -->
+				{% empty %}
+				<h3 style="color:#fff;padding:20px;">No contacts found..</h3>
+				{% endfor %}
+			</ul>
+		</section>
+	</div>
 </body>
+
 </html>

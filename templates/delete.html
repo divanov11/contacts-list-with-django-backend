@@ -2,38 +2,45 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'style-delete.css' %}">
-	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="{% static 'style-delete.css' %}">
+
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
 
-    <script src="https://kit.fontawesome.com/6b20b1c14d.js" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/6b20b1c14d.js" crossorigin="anonymous"></script>
 	<title>Delete Contact</title>
 </head>
+
 <body>
-
-	<header class="hero">
-		<a href="/edit/{{ contact.id }}">
-			<i id="back-btn" class="fas fa-chevron-circle-left"></i>
-		</a>
-		<div class="hero-info">
-			<h1 class="name">{{ contact.full_name | title }}</h1>
-			<p id="friend" class="relationship-hero">{{ contact.relationship | title }}</p>
-		</div>
-	</header>
-
-	<section class="delete-container">
-		<p>Are you sure you want to delete this contact?</p>
-		<div class="delete-contact">
-			<i id="delete" class="fas fa-trash"></i>
-			<a href="/deletecont/{{ contact.id }}">
-			<button class="delete-button">Delete Contact</button>
+	<div class="container">
+		<header class="hero">
+			<a href="{% url 'edit-contact' contact.id %}">
+				<i class="fas fa-chevron-circle-left back-btn"></i>
 			</a>
-		</div>
-	</section>
+			<div class="hero-info">
+				<h1 class="name">{{ contact.full_name | title }}</h1>
+				<p class="relationship-hero">{{ contact.relationship | title }}</p>
+			</div>
+		</header>
+
+		<section class="delete-container">
+			<p>Are you sure you want to delete this contact?</p>
+
+			<form method='POST'>
+				{% csrf_token %}
+				<div class="delete-contact">
+					<i class="fas fa-trash delete-icon"></i>
+					<input class="delete-button" type="submit" value='Delete Contact' />
+				</div>
+			</form>
+
+		</section>
+	</div>
 
 </body>
+
 </html>
