@@ -7,7 +7,7 @@ body{
 	max-width: 428px;
 	margin: 0 auto;
 	background-color: #313438;
-	height: 100vh;
+	min-height: 100vh;
 }
 
 a{
